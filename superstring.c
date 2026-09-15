@@ -73,3 +73,8 @@ bool ss_app(String* str, char* new_data)
 
     return true;
 }
+
+char ss_at(String* str, size_t index)
+{
+    return str->data[index];
+}

@@ -21,4 +21,7 @@ void ss_del(String* str);
 // Append a new string literal to the end of a string
 bool ss_app(String* str, char* new_data);
 
+// Return the character at a specified index
+char ss_at(String* str, size_t index);
+
 #endif
