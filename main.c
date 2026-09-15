@@ -7,5 +7,7 @@ int main(void)
     String* str1 = ss_new();
     if (str1 == NULL) {printf("Failed to create string.\n");}
 
+    ss_del(str1);
+
     return 0;
 }
