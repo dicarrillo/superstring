@@ -2,6 +2,8 @@
 #define SUPERSTRING_H
 
 #include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 
 // String type struct
 typedef struct {
@@ -15,5 +17,8 @@ String* ss_new(void);
 
 // Delete a string and free its memory
 void ss_del(String* str);
+
+// Append a new string literal to the end of a string
+bool ss_app(String* str, char* new_data);
 
 #endif
