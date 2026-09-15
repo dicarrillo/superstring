@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c17 -Wall -Wextra -Wpedantic
+CFLAGS = -std=c17 -Wall -Wextra -Wpedantic -g -fsanitize=address,undefined -fno-omit-frame-pointer
 DEPS = superstring.h
 OBJ = main.o superstring.o
 
