@@ -1,5 +1,6 @@
 #include "superstring.h"
 
+// Ensure that the string has enough allocated memory for a desired data capacity
 bool ensure_capacity(String* str, size_t capacity)
 {
     while (str->capacity < capacity)
@@ -10,6 +11,32 @@ bool ensure_capacity(String* str, size_t capacity)
         str->data = temp;
         str->capacity = str->capacity * 2;
     }
+
+    return true;
+}
+
+// Append new characters onto the end of a string
+bool append(String* str, char* data, size_t app_len)
+{
+    size_t new_len = str->length + app_len;
+
+    // Ensure string object has capacity for new data
+    if (!ensure_capacity(str, new_len)) {return false;}
+
+    char* write_pos = str->data + str->length;
+
+    // Add new characters to string
+    for (size_t i = 0; i < app_len; ++i)
+    {
+        *write_pos = data[i];
+        write_pos += 1;
+    }
+
+    // Add null terminator to end of new string
+    *write_pos = '\0';
+
+    // Update length field
+    str->length = new_len;
 
     return true;
 }
@@ -38,14 +65,14 @@ String* ss_new(char* data)
 
     // Append data to new string
     if (!ss_app(new_str, data)) {
-        ss_del(new_str);
+        ss_des(new_str);
         return NULL;
     }
 
     return new_str;
 }
 
-void ss_del(String* str)
+void ss_des(String* str)
 {
     // Free string data memory
     free(str->data);
@@ -56,28 +83,12 @@ void ss_del(String* str)
 
 bool ss_app(String* str, char* new_data)
 {
-    size_t added_len = strlen(new_data);
-    size_t new_len = str->length + added_len;
+    return append(str, new_data, strlen(new_data));
+}
 
-    // Ensure string object has capacity for new data
-    if (!ensure_capacity(str, new_len)) {return false;}
-
-    char* write_pos = str->data + str->length;
-
-    // Add new characters to string
-    for (size_t i = 0; i < added_len; ++i)
-    {
-        *write_pos = new_data[i];
-        write_pos += 1;
-    }
-
-    // Add null terminator to end of new string
-    *write_pos = '\0';
-
-    // Update length field
-    str->length = new_len;
-
-    return true;
+bool ss_apps(String* str, String* app_str)
+{
+    return append(str, app_str->data, app_str->length);
 }
 
 char ss_at(String* str, size_t index)

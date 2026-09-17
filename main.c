@@ -37,8 +37,26 @@ int main(void)
     printf("%s\n", str2->data);
     printf("Length: %zu\n", str2->length);
 
-    ss_del(str2);
-    ss_del(str1);
+    ss_app(str2, "");
+    printf("%s\n", str2->data);
+    printf("Length: %zu\n", str2->length);
+
+    ss_apps(str2, str1);
+    printf("%s\n", str2->data);
+    printf("Length: %zu\n", str2->length);
+
+    ss_apps(str1, str2);
+    printf("%s\n", str1->data);
+    printf("Length: %zu\n", str1->length);
+
+    String* str3 = ss_new("");
+
+    ss_apps(str3, str1);
+    printf("%s\n", str1->data);
+    printf("Length: %zu\n", str1->length);
+
+    ss_des(str2);
+    ss_des(str1);
 
     return 0;
 }
