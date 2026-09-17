@@ -13,7 +13,8 @@ typedef struct {
 } String;
 
 // Create a new string
-String* ss_new(void);
+String* ss_new(char* data);
+// String* ss_new(void);
 
 // Delete a string and free its memory
 void ss_del(String* str);

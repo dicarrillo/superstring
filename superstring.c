@@ -14,27 +14,33 @@ bool ensure_capacity(String* str, size_t capacity)
     return true;
 }
 
-String* ss_new(void)
+String* ss_new(char* data)
 {
     // Allocate string struct
     String* new_str = malloc(sizeof(String));
     if (new_str == NULL) {return NULL;}
 
-    size_t initial_capacity = 8;
+    size_t initial_capacity = 1;
 
-    // Allocate string character data
+    // Allocate string character memory (including null terminator)
     new_str->data = malloc(initial_capacity + 1);
     if (new_str->data == NULL) {
         free(new_str);
         return NULL;
     }
 
-    // Set null terminator at end of string
+    // Set null terminator
     *new_str->data = '\0';
 
     // Set initial string fields
     new_str->length = 0;
     new_str->capacity = initial_capacity;
+
+    // Append data to new string
+    if (!ss_app(new_str, data)) {
+        ss_del(new_str);
+        return NULL;
+    }
 
     return new_str;
 }
