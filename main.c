@@ -55,6 +55,7 @@ int main(void)
     printf("%s\n", str1->data);
     printf("Length: %zu\n", str1->length);
 
+    ss_des(str3);
     ss_des(str2);
     ss_des(str1);
 
