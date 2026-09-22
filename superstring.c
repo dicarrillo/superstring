@@ -58,7 +58,7 @@ bool insert(String* str, char* data, size_t ins_len, size_t index)
     // Insert new characters in string
     for (size_t i = 0; i < ins_len; ++i)
     {
-        *write_pos = data[index + i];
+        *write_pos = data[i];
         write_pos += 1;
     }
 
@@ -119,6 +119,16 @@ bool ss_app(String* str, char* new_data)
 bool ss_apps(String* str, String* app_str)
 {
     return append(str, app_str->data, app_str->length);
+}
+
+bool ss_ins(String* str, char* new_data, size_t index)
+{
+    return insert(str, new_data, strlen(new_data), index);
+}
+
+bool ss_inss(String* str, String* ins_str, size_t index)
+{
+    return insert(str, ins_str->data, ins_str->length, index);
 }
 
 char ss_at(String* str, size_t index)

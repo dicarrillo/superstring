@@ -55,6 +55,43 @@ int main(void)
     printf("%s\n", str1->data);
     printf("Length: %zu\n", str1->length);
 
+    String* str4 = ss_new("Hellld!");
+
+    printf("%s\n", str4->data);
+    printf("Length: %zu\n", str4->length);
+
+    ss_ins(str4, "o, wor", 4);
+
+    printf("%s\n", str4->data);
+    printf("Length: %zu\n", str4->length);
+
+    ss_ins(str4, "!!", str4->length);
+
+    printf("%s\n", str4->data);
+    printf("Length: %zu\n", str4->length);
+
+    String* str5 = ss_new("Hellld!");
+    String* str6 = ss_new("o, wor");
+
+    printf("%s\n", str5->data);
+    printf("Length: %zu\n", str5->length);
+
+    ss_inss(str5, str6, 4);
+
+    printf("%s\n", str5->data);
+    printf("Length: %zu\n", str5->length);
+
+    String* str7 = ss_new("!!");
+
+    ss_inss(str5, str7, str5->length);
+
+    printf("%s\n", str5->data);
+    printf("Length: %zu\n", str5->length);
+
+    ss_des(str7);
+    ss_des(str6);
+    ss_des(str5);
+    ss_des(str4);
     ss_des(str3);
     ss_des(str2);
     ss_des(str1);
