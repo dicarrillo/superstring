@@ -88,6 +88,8 @@ int main(void)
     printf("%s\n", str5->data);
     printf("Length: %zu\n", str5->length);
 
+    printf("Length: %zu\n", ss_len(str5));
+
     ss_des(str7);
     ss_des(str6);
     ss_des(str5);

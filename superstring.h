@@ -35,4 +35,7 @@ bool ss_inss(String* str, String* ins_str, size_t index);
 // Return the character at a specified index
 char ss_at(String* str, size_t index);
 
+// Return the length of a string
+size_t ss_len(String* str);
+
 #endif

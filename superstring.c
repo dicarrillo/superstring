@@ -135,3 +135,8 @@ char ss_at(String* str, size_t index)
 {
     return str->data[index];
 }
+
+size_t ss_len(String* str)
+{
+    return str->length;
+}
