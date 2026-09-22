@@ -41,6 +41,36 @@ bool append(String* str, char* data, size_t app_len)
     return true;
 }
 
+bool insert(String* str, char* data, size_t ins_len, size_t index)
+{
+    if (index > str->length) {return false;}
+
+    size_t new_len = str->length + ins_len;
+
+    // Ensure string object has capacity for new data
+    if (!ensure_capacity(str, new_len)) {return false;}
+
+    // Shift items at and beyond insert index to make space for insert string
+    memmove(&str->data[index] + ins_len, &str->data[index], ins_len);
+
+    char* write_pos = &str->data[index];
+
+    // Insert new characters in string
+    for (size_t i = 0; i < ins_len; ++i)
+    {
+        *write_pos = data[index + i];
+        write_pos += 1;
+    }
+
+    // Add null terminator to end of shifted string
+    str->data[new_len] = '\0';
+
+    // Update length field
+    str->length = new_len;
+
+    return true;
+}
+
 String* ss_new(char* data)
 {
     // Allocate string struct
